@@ -4,6 +4,7 @@ import org.json.JSONException;
 
 import modele.Weather;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -28,7 +29,9 @@ public class MaMeteoActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ma_meteo);
-		String city = "Paris,FR";
+		
+		Intent intent = getIntent();
+		String city = intent.getStringExtra("Countrie");
 		
 		cityText = (TextView) findViewById(R.id.cityText);
 		condDescr = (TextView) findViewById(R.id.condDescr);
