@@ -17,12 +17,11 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		
+	
 		Spinner spinner = (Spinner) findViewById(R.id.spinner);
 		List exemple = new ArrayList();		
-		exemple.add("Assinie");
-		exemple.add("Bassam");
+		exemple.add("Paris,FR");
+		exemple.add("London,EN");
 		exemple.add("Abidjan");
 
 		ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, exemple);
