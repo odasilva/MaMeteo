@@ -2,6 +2,10 @@
 <resources>
 
     <string name="app_name">MaMeteo</string>
-    <string name="hello_world">Hello world!</string>
-
+    <string name="title_activity_main">MainActivity</string>
+    <string name="textTitle">Ma Météo</string>
+    <string name="textSelect">Choisissez votre ville : </string>
+    <string name="buttonConsult">Consulter</string>
+    <string name="buttonFav">Favoris</string>
+        
 </resources>

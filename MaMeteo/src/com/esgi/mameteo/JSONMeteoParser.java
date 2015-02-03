@@ -15,7 +15,7 @@ public class JSONMeteoParser {
 
 		// We create out JSONObject from the data
 		JSONObject jObj = new JSONObject(data);
-		
+		System.out.println(data);
 		// We start extracting the info
 		Location loc = new Location();
 		
