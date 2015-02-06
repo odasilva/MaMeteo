@@ -49,7 +49,13 @@ public class MainActivity extends Activity {
 	
 	public void onClickConsult(View v){
 		intent = new Intent(this, MaMeteoActivity.class);
-		intent.putExtra("Countrie", spinner.getSelectedItem().toString());
+		intent.putExtra("Countrie", spinner.getSelectedItem().toString());	
 		startActivity(intent);
 	}
+	
+	public void onClickFavorite(View v){
+		intent = new Intent(this, FavoriteActivity.class);
+		startActivity(intent);
+	}
+	
 }

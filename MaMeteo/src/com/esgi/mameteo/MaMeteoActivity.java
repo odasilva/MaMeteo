@@ -3,14 +3,17 @@ package com.esgi.mameteo;
 import org.json.JSONException;
 
 import modele.Weather;
+import BDD.WeatherBDD;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MaMeteoActivity extends Activity {
 
@@ -24,6 +27,9 @@ public class MaMeteoActivity extends Activity {
 	private TextView hum;
 	private ImageView imgView;
 	
+	private String city;
+
+	private WeatherBDD weatherBdd;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +37,7 @@ public class MaMeteoActivity extends Activity {
 		setContentView(R.layout.activity_ma_meteo);
 		
 		Intent intent = getIntent();
-		String city = intent.getStringExtra("Countrie");
+		city = intent.getStringExtra("Countrie");
 		
 		cityText = (TextView) findViewById(R.id.cityText);
 		condDescr = (TextView) findViewById(R.id.condDescr);
@@ -41,6 +47,8 @@ public class MaMeteoActivity extends Activity {
 		windSpeed = (TextView) findViewById(R.id.windSpeed);
 		windDeg = (TextView) findViewById(R.id.windDeg);
 		imgView = (ImageView) findViewById(R.id.condIcon);
+
+		weatherBdd = new WeatherBDD(this);
 		
 		JSONWeatherTask task = new JSONWeatherTask();
 		task.execute(new String[]{city});
@@ -54,6 +62,27 @@ public class MaMeteoActivity extends Activity {
 		return true;
 	}*/
 
+	public void onClickFav(View v){
+		String toast = "";
+		
+		weatherBdd.open();
+		if(weatherBdd.isFavoriteWithCountires(city)){
+//			weatherBdd.setFavoriteWeatherWithCountries(city, 0);
+//			toast = city+" removed from favorites";
+		}else{
+//			weatherBdd.setFavoriteWeatherWithCountries(city, 1);
+//			toast = city+" added to favorites";
+		}
+		weatherBdd.close();
+    	Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_SHORT).show();
+		
+	}
+	
+	
+	public void onClickRefresh(View v){
+		finish();
+		startActivity(getIntent());
+	}
 	
 	private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
 		

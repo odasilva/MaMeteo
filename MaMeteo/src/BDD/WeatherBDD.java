@@ -60,10 +60,38 @@ public class WeatherBDD {
 		
 		return bdd.update(TABLE_WEATHER, values, COL_ID + " = " +id, null);
 	}
+	
+	public int setFavoriteWeatherWithCountries(String countries, int favorite){
+
+		ContentValues values = new ContentValues();
+		
+		values.put(COL_COUNTRIE, countries);
+		values.put(COL_FAVORITE, favorite);
+		
+		return bdd.update(TABLE_WEATHER, values, COL_COUNTRIE + " = " +countries, null);
+	}
+	
+	public boolean isFavoriteWithCountires(String countries){
+		
+	    String query = "SELECT "+COL_ID+" FROM "+TABLE_WEATHER +" WHERE "+COL_COUNTRIE+" = "+countries+";";
+	    boolean isFavorite = false;
+	    Cursor c = bdd.rawQuery(query, null);
+	    
+	    c.moveToNext();
+	    isFavorite = (1 == getWeatherWithId(c.getInt(0)).getFavorite());
+	    c.close();
+	    
+	    return isFavorite;
+	}
  
 	public int removeWeatherWithID(int id){
 
 		return bdd.delete(TABLE_WEATHER, COL_ID + " = " +id, null);
+	}
+	
+	public int removeWeatherWithCountries(String countries){
+
+		return bdd.delete(TABLE_WEATHER, COL_COUNTRIE + " = " +countries, null);
 	}
  
 	public Weather_Data getWeatherWithId(int id){
@@ -104,5 +132,21 @@ public class WeatherBDD {
 	    c.close();
 	    
 	    return weathers;
+	}
+	
+	
+	public ArrayList<String> getFavorite()
+	{
+		String query = "SELECT "+COL_COUNTRIE+" FROM "+TABLE_WEATHER +" WHERE "+COL_FAVORITE+" = 1";
+		ArrayList<String> favorites = new ArrayList<String>();
+		
+	    Cursor c = bdd.rawQuery(query, null);
+	    
+	    while(c.moveToNext()) {
+	    	favorites.add(getWeatherWithId(c.getInt(0)).getCountrie());
+	    }
+	    c.close();
+	    
+	    return favorites;		
 	}
 }

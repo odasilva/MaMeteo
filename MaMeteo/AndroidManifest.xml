@@ -26,6 +26,10 @@
             android:name=".MaMeteoActivity"
             android:label="@string/app_name" >
         </activity>
+         <activity
+            android:name=".FavoriteActivity"
+            android:label="@string/buttonFav" >
+        </activity>
     </application>
 
 </manifest>

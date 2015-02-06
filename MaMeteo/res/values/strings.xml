@@ -7,5 +7,8 @@
     <string name="textSelect">Choisissez votre ville : </string>
     <string name="buttonConsult">Consulter</string>
     <string name="buttonFav">Favoris</string>
+    <string name="buttonRefresh">Actualiser</string>
+    
+    
         
 </resources>
