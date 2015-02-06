@@ -8,7 +8,9 @@
     <string name="buttonConsult">Consulter</string>
     <string name="buttonFav">Favoris</string>
     <string name="buttonRefresh">Actualiser</string>
-    
-    
-        
+    <string name="titleDialogFavorite">Supprmier Favoris</string>
+    <string name="messageDialogFavorite">Êtes-vous sûr(e) de vouloir supprimer cette ville de vos favoris ?</string>
+    <string name="toastFavorite">Favoris supprimé.</string>
+    <string name="toastDelFavorite">supprimé des favoris.</string>
+    <string name="toastAddFavorite">ajouté aux favoris.</string>    
 </resources>

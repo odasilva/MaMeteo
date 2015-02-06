@@ -43,9 +43,14 @@ public final class R {
         public static final int buttonConsult=0x7f040004;
         public static final int buttonFav=0x7f040005;
         public static final int buttonRefresh=0x7f040006;
+        public static final int messageDialogFavorite=0x7f040008;
         public static final int textSelect=0x7f040003;
         public static final int textTitle=0x7f040002;
+        public static final int titleDialogFavorite=0x7f040007;
         public static final int title_activity_main=0x7f040001;
+        public static final int toastAddFavorite=0x7f04000b;
+        public static final int toastDelFavorite=0x7f04000a;
+        public static final int toastFavorite=0x7f040009;
     }
     public static final class style {
         /** 

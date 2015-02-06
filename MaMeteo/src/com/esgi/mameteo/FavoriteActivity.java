@@ -63,17 +63,20 @@ public class FavoriteActivity extends Activity{
 					final int position, long id) {
 
 				new AlertDialog.Builder(listview.getContext())
-			    .setTitle("Delete Favorite")
-			    .setMessage("Are you sure you want to delete this city?")
+			    .setTitle(getResources().getString(R.string.titleDialogFavorite))
+			    .setMessage(getResources().getString(R.string.messageDialogFavorite))
 			    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 			        public void onClick(DialogInterface dialog, int which) { 
 			        	
 			        	String itemValue = (String) listview.getItemAtPosition(position);
 			        	weatherBDD.open();
-			        	weatherBDD.removeWeatherWithCountries(itemValue);
+			        	weatherBDD.setFavoriteWeatherWithCountries(itemValue, 0);
 			        	weatherBDD.close();
 			        	
-			        	Toast.makeText(getApplicationContext(), "Favorite delete.", Toast.LENGTH_SHORT).show();
+			        	Toast.makeText(getApplicationContext(), getResources().getString(R.string.toastFavorite), Toast.LENGTH_SHORT).show();
+			        	
+			        	finish();
+			    		startActivity(getIntent());
 			        }
 			     })
 			    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

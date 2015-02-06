@@ -68,10 +68,10 @@ public class MaMeteoActivity extends Activity {
 		weatherBdd.open();
 		if(weatherBdd.isFavoriteWithCountires(city)){
 			weatherBdd.setFavoriteWeatherWithCountries(city, 0);
-			toast = city+" removed from favorites";
+			toast = city+" "+getResources().getString(R.string.toastDelFavorite);
 		}else{
 			weatherBdd.setFavoriteWeatherWithCountries(city, 1);
-			toast = city+" added to favorites";
+			toast = city+" "+getResources().getString(R.string.toastAddFavorite);
 		}
 		weatherBdd.close();
     	Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_SHORT).show();
