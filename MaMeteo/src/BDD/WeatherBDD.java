@@ -68,15 +68,15 @@ public class WeatherBDD {
 		values.put(COL_COUNTRIE, countries);
 		values.put(COL_FAVORITE, favorite);
 		
-		return bdd.update(TABLE_WEATHER, values, COL_COUNTRIE + " = " +countries, null);
+		return bdd.update(TABLE_WEATHER, values, COL_COUNTRIE + " = '" +countries+"'", null);
 	}
 	
 	public boolean isFavoriteWithCountires(String countries){
 		
-	    String query = "SELECT "+COL_ID+" FROM "+TABLE_WEATHER +" WHERE "+COL_COUNTRIE+" = "+countries+";";
+	    String query = "SELECT "+COL_ID+" FROM "+TABLE_WEATHER +" WHERE "+COL_COUNTRIE+" = '"+countries+"'";
 	    boolean isFavorite = false;
-	    Cursor c = bdd.rawQuery(query, null);
 	    
+	    Cursor c = bdd.rawQuery(query, null);
 	    c.moveToNext();
 	    isFavorite = (1 == getWeatherWithId(c.getInt(0)).getFavorite());
 	    c.close();
@@ -143,7 +143,7 @@ public class WeatherBDD {
 	    Cursor c = bdd.rawQuery(query, null);
 	    
 	    while(c.moveToNext()) {
-	    	favorites.add(getWeatherWithId(c.getInt(0)).getCountrie());
+	    	favorites.add(c.getString(0));
 	    }
 	    c.close();
 	    
