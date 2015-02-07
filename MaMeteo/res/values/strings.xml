@@ -12,5 +12,16 @@
     <string name="messageDialogFavorite">Êtes-vous sûr(e) de vouloir supprimer cette ville de vos favoris ?</string>
     <string name="toastFavorite">Favoris supprimé.</string>
     <string name="toastDelFavorite">supprimé des favoris.</string>
-    <string name="toastAddFavorite">ajouté aux favoris.</string>    
+    <string name="toastAddFavorite">ajouté aux favoris.</string>   
+    <string name="txtaddCityItem">Ajouter une ville</string>   
+    <string name="txtaboutItem">A Propos</string>   
+    <string name="txtleaveItem">Quitter</string>   
+    <string name="version">Version</string>   
+    <string name="save">Enregistrer</string>   
+    <string name="cancel">Annuler</string> 
+    <string name="succes">ajouté avec succès.</string>   
+    <string name="fail_add_city">Erreur</string>     
+       
+    
+    
 </resources>

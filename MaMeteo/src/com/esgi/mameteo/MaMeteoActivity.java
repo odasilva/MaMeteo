@@ -3,14 +3,23 @@ package com.esgi.mameteo;
 import org.json.JSONException;
 
 import modele.Weather;
+import modele.Weather_Data;
 import BDD.WeatherBDD;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +39,9 @@ public class MaMeteoActivity extends Activity {
 	private String city;
 
 	private WeatherBDD weatherBdd;
+	
+	private MenuInflater inflater;
+	private Intent intent;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +65,6 @@ public class MaMeteoActivity extends Activity {
 		JSONWeatherTask task = new JSONWeatherTask();
 		task.execute(new String[]{city});
 	}
-
-	/*
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}*/
 
 	public void onClickFav(View v){
 		String toast = "";
@@ -124,13 +128,66 @@ public class MaMeteoActivity extends Activity {
 			windSpeed.setText("" + weather.wind.getSpeed() + " mps");
 			windDeg.setText("" + weather.wind.getDeg());
 				
-		}
-
-
-
-
-
-
-	
+		}	
   }
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+		 
+        inflater = getMenuInflater();
+        inflater.inflate(R.layout.menu, menu);
+ 	 
+        return true;
+     }
+ 
+      public boolean onOptionsItemSelected(MenuItem item) {
+      
+    	  switch (item.getItemId()) {
+            case R.id.favoriteItem:
+            	intent = new Intent(this, FavoriteActivity.class);
+            	startActivity(intent);
+               return true;
+            case R.id.addCityItem:
+					AlertDialog.Builder AddCityBox;
+					final EditText input = new EditText(this);
+					AddCityBox = new AlertDialog.Builder(this);
+					AddCityBox.setView(input);
+					AddCityBox.setTitle(getResources().getString(R.string.txtaddCityItem));
+					//AddCityBox.setIcon(R.drawable.ic_launcher);
+					AddCityBox.setMessage(getResources().getString(R.string.txtaddCityItem));
+					AddCityBox.setPositiveButton(getResources().getString(R.string.save),
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {
+									String city = input.getText().toString();
+									weatherBdd.open();
+									long error = weatherBdd.insertWeather(new Weather_Data(city));
+									weatherBdd.close();
+									
+									if(error != 0)
+										 Toast.makeText(MaMeteoActivity.this,city+" "+getResources().getString(R.string.succes), Toast.LENGTH_LONG).show();
+									else
+										 Toast.makeText(MaMeteoActivity.this,getResources().getString(R.string.fail_add_city), Toast.LENGTH_LONG).show();
+										
+								}
+							});
+					AddCityBox.setNegativeButton(getResources().getString(R.string.cancel),
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int which) {}
+							});
+					AddCityBox.show();
+                return true;
+            case R.id.aboutItem:
+				PackageInfo pInfo;
+				try {
+					pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+	                Toast.makeText(MaMeteoActivity.this,getResources().getString(R.string.app_name)+" "+getResources().getString(R.string.version)+" : "+ pInfo.versionName, Toast.LENGTH_LONG).show();
+				} catch (NameNotFoundException e) {
+					e.printStackTrace();
+				}
+                return true;
+           case R.id.leaveItem:
+               finish();
+               return true;
+         }
+         return false;
+     }
 }

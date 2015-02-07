@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+<item android:id="@+id/favoriteItem" 
+      android:title="@string/buttonFav"/>
+
+<item android:id="@+id/addCityItem" 
+      android:title="@string/txtaddCityItem"/>
+
+<item android:id="@+id/aboutItem" 
+      android:title="@string/txtaboutItem"/>
+ 
+<item android:id="@+id/leaveItem" 
+     android:title="@string/txtleaveItem"/>
+</menu>
