@@ -50,7 +50,7 @@ public class MaMeteoActivity extends Activity {
 		
 		Intent intent = getIntent();
 		city = intent.getStringExtra("Countrie");
-		
+
 		cityText = (TextView) findViewById(R.id.cityText);
 		condDescr = (TextView) findViewById(R.id.condDescr);
 		temp = (TextView) findViewById(R.id.temp);
