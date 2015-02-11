@@ -3,38 +3,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/sky"
     tools:context="${relativePackage}.${activityClass}" >
+    
+     <TextView
+         android:id="@+id/textTitle"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="center_horizontal"
+         android:layout_marginTop="40dp"
+         android:layout_weight="0.11"
+         android:text="@string/textTitle" />
+     
+        <TextView
+            android:id="@+id/textSelect"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/textSelect"
+             />
 
-    <TextView
-        android:id="@+id/textTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textTitle" />
-
-    <TextView
-        android:id="@+id/textSelect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textSelect" />
-
-    <Spinner
-    	android:id="@+id/spinner"
-        android:layout_width="match_parent"
-		android:layout_height="wrap_content"
- 		/>
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.12" />
 
         <Button
             android:id="@+id/buttonConsult"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="10dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="0.07"
             android:onClick="onClickConsult"
             android:text="@string/buttonConsult" />
-
+m
+        
+       "
+        
         <Button
             android:id="@+id/buttonFav"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="103dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="40dp"
+            android:layout_weight="0.04"
             android:onClick="onClickFavorite"
             android:text="@string/buttonFav" />
-   
-</LinearLayout>
+
+        </LinearLayout>
+  
