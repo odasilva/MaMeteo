@@ -1,9 +1,14 @@
 package com.esgi.mameteo;
 
-import org.json.JSONException;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import modele.Weather;
 import modele.Weather_Data;
+
+import org.json.JSONException;
+
 import BDD.WeatherBDD;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -15,6 +20,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -42,6 +48,8 @@ public class MaMeteoActivity extends Activity {
 	
 	private MenuInflater inflater;
 	private Intent intent;
+	private final String ICONS_LOCATION = "http://openweathermap.org/img/w/";
+	private Bitmap bmp;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +107,16 @@ public class MaMeteoActivity extends Activity {
 				weather = JSONMeteoParser.getWeather(data);
 				
 				// Let's retrieve the icon
-				weather.iconData = ( (new WeatherHttpClient()).getImage(weather.currentCondition.getIcon()));
-				
+				//weather.iconData = ( (new WeatherHttpClient()).getImage( weather.currentCondition.getIcon()));
+				URL url = new URL(ICONS_LOCATION + weather.currentCondition.getIcon() + ".png");
+				bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
 			} catch (JSONException e) {				
+				e.printStackTrace();
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return weather;
@@ -115,11 +130,15 @@ public class MaMeteoActivity extends Activity {
 		protected void onPostExecute(Weather weather) {			
 			super.onPostExecute(weather);
 			
-			if (weather.iconData != null && weather.iconData.length > 0) {
+			/*if (weather.iconData != null && weather.iconData.length > 0) {
 				Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length); 
 				imgView.setImageBitmap(img);
-			}
-						
+			}*/
+			
+			if(bmp != null)
+				imgView.setImageBitmap(bmp);
+			
+							
 			cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
 			condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
 			temp.setText("" + Math.round((weather.temperature.getTemp() - 273.15)) + "c");
