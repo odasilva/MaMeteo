@@ -55,6 +55,27 @@ public class MainActivity extends Activity {
 
 	}
 	
+	@Override
+	protected void onResume() {
+		
+		super.onResume();
+		
+		weatherBdd = new WeatherBDD(this);
+		weatherBdd.open();
+		
+		spinner = (Spinner) findViewById(R.id.spinner);
+		countries = new ArrayList<String>();
+		weather_datas = weatherBdd.getWeathers();
+		weatherBdd.close();
+		for(int i = 0; i < weather_datas.size(); i++){
+			countries.add(weather_datas.get(i).getCountrie());
+		}
+
+		adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item, countries);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+	}
+	
 	public void onClickConsult(View v){
 		intent = new Intent(this, MaMeteoActivity.class);
 		intent.putExtra("Countrie", spinner.getSelectedItem().toString());	
@@ -102,7 +123,22 @@ public class MainActivity extends Activity {
 										 Toast.makeText(MainActivity.this,city+" "+getResources().getString(R.string.succes), Toast.LENGTH_LONG).show();
 									else
 										 Toast.makeText(MainActivity.this,getResources().getString(R.string.fail_add_city), Toast.LENGTH_LONG).show();
-										
+									
+									
+									weatherBdd = new WeatherBDD(MainActivity.this);
+									weatherBdd.open();
+									
+									spinner = (Spinner) findViewById(R.id.spinner);
+									countries = new ArrayList<String>();
+									weather_datas = weatherBdd.getWeathers();
+									weatherBdd.close();
+									for(int i = 0; i < weather_datas.size(); i++){
+										countries.add(weather_datas.get(i).getCountrie());
+									}
+
+									adapter = new ArrayAdapter(MainActivity.this,android.R.layout.simple_spinner_item, countries);
+									adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+									spinner.setAdapter(adapter);
 								}
 							});
 					AddCityBox.setNegativeButton(getResources().getString(R.string.cancel),

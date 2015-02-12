@@ -119,7 +119,7 @@ public class MaMeteoActivity extends Activity {
 				Bitmap img = BitmapFactory.decodeByteArray(weather.iconData, 0, weather.iconData.length); 
 				imgView.setImageBitmap(img);
 			}
-			
+						
 			cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
 			condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
 			temp.setText("" + Math.round((weather.temperature.getTemp() - 273.15)) + "c");
