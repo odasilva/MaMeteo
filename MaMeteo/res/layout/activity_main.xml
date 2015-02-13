@@ -1,10 +1,15 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+                                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:tools="http://schemas.android.com/tools"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/sky"
+                    tools:context="${relativePackage}.${activityClass}" >
+    
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/sky"
-    tools:context="${relativePackage}.${activityClass}" >
+    android:weightSum="1" >
     
      <TextView
          android:id="@+id/textTitle"
@@ -12,10 +17,13 @@
          android:layout_height="wrap_content"
          android:layout_gravity="center_horizontal"
          android:layout_marginTop="40dp"
-         android:layout_weight="0.11"
+	     android:layout_weight="0.11"
          android:textColor="#FFFFFF"
          android:textSize="20sp"
          android:text="@string/textTitle" />
+     
+     <View android:layout_width="fill_parent"
+            android:layout_height="70dp"/>
      
         <TextView
             android:id="@+id/textSelect"
@@ -24,21 +32,28 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/textSelect"
             android:textColor="#FFFFFF"
-         android:textSize="16dip"
+         	android:textSize="16sp"
              />
+        
+        
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
             android:layout_weight="0.12"
+            android:layout_gravity="center_horizontal"
+            
              />
+        
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
 
         <Button
             android:id="@+id/buttonConsult"
             android:layout_width="wrap_content"
-            android:layout_height="10dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="10dp"
@@ -49,17 +64,22 @@
             android:background="@android:color/transparent"/>
 
         
+        
         <Button
             android:id="@+id/buttonFav"
             android:layout_width="103dp"
-            android:layout_height="10dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_weight="0.04"
             android:onClick="onClickFavorite"
             android:text="@string/buttonFav"
-            android:src="@drawable/favbutton"
             android:textColor="#FFFFFF"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            />
+	
+        
+    </LinearLayout>    
 
-        </LinearLayout>
+
+</ScrollView>
   
