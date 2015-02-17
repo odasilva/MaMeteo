@@ -20,8 +20,13 @@
     <string name="save">Enregistrer</string>   
     <string name="cancel">Annuler</string> 
     <string name="succes">ajouté avec succès.</string>   
-    <string name="fail_add_city">Erreur</string>     
-       
+    <string name="fail_add_city">Erreur</string>
+    <string name="txtTemp">Temperature:</string>    
+    <string name="txtAtmPressure">Atm. Pressure:</string>
+    <string name="txtHum">Humidity:</string>
+    <string name="txtWindForce">Wind Speed:</string>
+    <string name="txtWindDir">Wind Direction:</string>
+    <string name="txtWeatherIMG">weather image</string>
     
     
 </resources>
