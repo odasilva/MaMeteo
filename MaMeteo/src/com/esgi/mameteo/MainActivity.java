@@ -6,6 +6,7 @@ import java.util.List;
 import modele.Weather_Data;
 
 import BDD.WeatherBDD;
+import android.R.drawable;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,7 +18,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.BounceInterpolator;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -37,7 +40,10 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	
+		
+		Button btn = (Button) findViewById(R.id.buttonFav);
+		btn.setBackgroundDrawable(getResources().getDrawable(R.drawable.star));
+		
 		weatherBdd = new WeatherBDD(this);
 		weatherBdd.open();
 		
