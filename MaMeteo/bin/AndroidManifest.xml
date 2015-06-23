@@ -32,5 +32,15 @@
             android:name=".FavoriteActivity"
             android:label="@string/buttonFav" >
         </activity>
+        
+           <activity android:name="com.esgi.mameteo.SearchResultsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+ 
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@layout/searchable" />
+        </activity>
     </application>
 </manifest>
