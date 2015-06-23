@@ -27,6 +27,7 @@
     <string name="txtWindForce">Wind Speed:</string>
     <string name="txtWindDir">Wind Direction:</string>
     <string name="txtWeatherIMG">weather image</string>
-    
+    <string name="actionSearch">search</string>
+    <string name="search_hint">rechercher</string>
     
 </resources>

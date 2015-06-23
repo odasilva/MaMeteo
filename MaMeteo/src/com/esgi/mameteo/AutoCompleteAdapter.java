@@ -46,11 +46,10 @@ public class AutoCompleteAdapter extends ArrayAdapter<String> implements Filtera
 			protected FilterResults performFiltering(final CharSequence constraint) {
 				List<String> citiesList = null;
 				if (constraint != null) {
-					try {
+				/*	try {
 						//TODO populate citiesList with datas from openweathermap
-						
 					} catch (IOException e) {
-					}
+					}*/
 				}
 				if (citiesList == null) {
 					citiesList = new ArrayList<String>();

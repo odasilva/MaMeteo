@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import modele.Weather_Data;
-
 import BDD.WeatherBDD;
-import android.R.drawable;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -18,11 +18,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.BounceInterpolator;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -98,8 +97,14 @@ public class MainActivity extends Activity {
 		 
 	        inflater = getMenuInflater();
 	        inflater.inflate(R.layout.menu, menu);
-	 	 
-	        return true;
+	        inflater.inflate(R.menu.actionbar, menu);
+	        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+	        SearchView searchView = (SearchView) menu.findItem(R.id.search)
+	                .getActionView();
+	        searchView.setSearchableInfo(searchManager
+	                .getSearchableInfo(getComponentName()));
+	        
+	        return super.onCreateOptionsMenu(menu);
 	     }
 	 
 	      public boolean onOptionsItemSelected(MenuItem item) {
@@ -162,6 +167,9 @@ public class MainActivity extends Activity {
 						e.printStackTrace();
 					}
 	                return true;
+	            case R.id.search:
+	            	
+	            	return true;
 	           case R.id.leaveItem:
 	               finish();
 	               return true;
