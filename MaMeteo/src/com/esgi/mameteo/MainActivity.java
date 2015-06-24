@@ -5,6 +5,7 @@ import java.util.List;
 
 import modele.Weather_Data;
 import BDD.WeatherBDD;
+import android.R.xml;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
@@ -14,6 +15,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -99,8 +101,7 @@ public class MainActivity extends Activity {
 	        inflater.inflate(R.layout.menu, menu);
 	        inflater.inflate(R.menu.actionbar, menu);
 	        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-	        SearchView searchView = (SearchView) menu.findItem(R.id.search)
-	                .getActionView();
+	        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
 	        searchView.setSearchableInfo(searchManager
 	                .getSearchableInfo(getComponentName()));
 	        
