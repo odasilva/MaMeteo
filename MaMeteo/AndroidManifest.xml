@@ -15,12 +15,14 @@
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+          <meta-data
+                android:name="android.app.default_searchable"
+                android:value="com.esgi.mameteo.SearchResultsActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -33,14 +35,14 @@
             android:label="@string/buttonFav" >
         </activity>
         
-           <activity android:name="com.esgi.mameteo.SearchResultsActivity">
+           <activity android:name="com.esgi.mameteo.SearchResultsActivity"
+               android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
- 
-            <meta-data
+                   <meta-data
                 android:name="android.app.searchable"
-                android:resource="@layout/searchable" />
+                android:resource="@xml/searchable" />
         </activity>
     </application>
 </manifest>
