@@ -3,24 +3,29 @@ package com.esgi.mameteo;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 
 import modele.Weather;
 import modele.Weather_Data;
 
 import org.json.JSONException;
 
+
 import BDD.WeatherBDD;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -54,6 +59,15 @@ public class MaMeteoActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		 if(getIntent().hasExtra("locale")){
+				Resources res = MaMeteoActivity.this.getResources();
+				// Change locale settings in the app.
+				DisplayMetrics dm = res.getDisplayMetrics();
+				android.content.res.Configuration conf = res
+						.getConfiguration();
+				conf.locale = new Locale(getIntent().getStringExtra("locale"));
+				res.updateConfiguration(conf, dm);
+			}
 		setContentView(R.layout.activity_ma_meteo);
 		
 		Intent intent = getIntent();
@@ -159,7 +173,7 @@ public class MaMeteoActivity extends Activity {
      }
  
       public boolean onOptionsItemSelected(MenuItem item) {
-      
+	  
     	  switch (item.getItemId()) {
             case R.id.favoriteItem:
             	intent = new Intent(this, FavoriteActivity.class);
@@ -206,7 +220,36 @@ public class MaMeteoActivity extends Activity {
            case R.id.leaveItem:
                finish();
                return true;
+
+           case R.id.menu_language:
+        	   String[] tabStringLanguage = {
+   					getResources().getString(R.string.ln_en),
+   					getResources().getString(R.string.ln_fr),
+   			};
+
+   			AlertDialog.Builder builder = new Builder(this).setTitle(
+   					getResources().getString(R.string.title_menu_language))
+   					.setItems(tabStringLanguage, new OnClickListener() {
+
+   						public void onClick(DialogInterface dialog, int which) {
+
+   							String ln = "";
+   							if (which == 0)
+   								ln = "en";
+   							else if (which == 1)
+   								ln = "fr";
+
+   							
+   							finish();
+   							startActivity(getIntent().putExtra("locale", ln));
+   						}
+
+   					});
+
+   			builder.show();
+   			return true;
          }
          return false;
      }
+      
 }

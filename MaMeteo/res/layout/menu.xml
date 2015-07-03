@@ -3,6 +3,12 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
  
+     <item
+        android:id="@+id/menu_language"
+        android:icon="@drawable/language"
+        android:showAsAction="ifRoom"
+        android:title="@string/title_menu_language"/>
+     
 <item android:id="@+id/favoriteItem" 
       android:title="@string/buttonFav"/>
 

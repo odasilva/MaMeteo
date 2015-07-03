@@ -14,44 +14,46 @@ public final class R {
         public static final int favbutton=0x7f020000;
         public static final int ic_action_search=0x7f020001;
         public static final int ic_launcher=0x7f020002;
-        public static final int logo=0x7f020003;
-        public static final int sky=0x7f020004;
-        public static final int star=0x7f020005;
+        public static final int language=0x7f020003;
+        public static final int logo=0x7f020004;
+        public static final int sky=0x7f020005;
+        public static final int star=0x7f020006;
     }
     public static final class id {
-        public static final int aboutItem=0x7f07001e;
-        public static final int addCityItem=0x7f07001d;
-        public static final int buttonActualiser=0x7f070003;
-        public static final int buttonConsult=0x7f07001a;
-        public static final int buttonFav=0x7f070002;
-        public static final int cityText=0x7f070001;
-        public static final int condDescr=0x7f070007;
-        public static final int condIcon=0x7f070004;
-        public static final int favoriteItem=0x7f07001c;
-        public static final int hum=0x7f070010;
-        public static final int humLab=0x7f07000f;
-        public static final int leaveItem=0x7f07001f;
-        public static final int listview=0x7f070000;
-        public static final int press=0x7f07000d;
-        public static final int pressLab=0x7f07000c;
-        public static final int row4=0x7f070006;
-        public static final int row5=0x7f070008;
-        public static final int row6=0x7f07000b;
-        public static final int row7=0x7f07000e;
-        public static final int row8=0x7f070011;
-        public static final int row9=0x7f070014;
-        public static final int search=0x7f070020;
-        public static final int spinner=0x7f070019;
-        public static final int table=0x7f070005;
-        public static final int temp=0x7f07000a;
-        public static final int tempLab=0x7f070009;
-        public static final int textSelect=0x7f070018;
-        public static final int textTitle=0x7f070017;
-        public static final int txtQuery=0x7f07001b;
-        public static final int windDeg=0x7f070016;
-        public static final int windDegLab=0x7f070015;
-        public static final int windForceLab=0x7f070012;
-        public static final int windSpeed=0x7f070013;
+        public static final int aboutItem=0x7f08001f;
+        public static final int addCityItem=0x7f08001e;
+        public static final int buttonActualiser=0x7f080003;
+        public static final int buttonConsult=0x7f08001a;
+        public static final int buttonFav=0x7f080002;
+        public static final int cityText=0x7f080001;
+        public static final int condDescr=0x7f080007;
+        public static final int condIcon=0x7f080004;
+        public static final int favoriteItem=0x7f08001d;
+        public static final int hum=0x7f080010;
+        public static final int humLab=0x7f08000f;
+        public static final int leaveItem=0x7f080020;
+        public static final int listview=0x7f080000;
+        public static final int menu_language=0x7f08001c;
+        public static final int press=0x7f08000d;
+        public static final int pressLab=0x7f08000c;
+        public static final int resultsList=0x7f08001b;
+        public static final int row4=0x7f080006;
+        public static final int row5=0x7f080008;
+        public static final int row6=0x7f08000b;
+        public static final int row7=0x7f08000e;
+        public static final int row8=0x7f080011;
+        public static final int row9=0x7f080014;
+        public static final int search=0x7f080021;
+        public static final int spinner=0x7f080019;
+        public static final int table=0x7f080005;
+        public static final int temp=0x7f08000a;
+        public static final int tempLab=0x7f080009;
+        public static final int textSelect=0x7f080018;
+        public static final int textTitle=0x7f080017;
+        public static final int windDeg=0x7f080016;
+        public static final int windDegLab=0x7f080015;
+        public static final int windForceLab=0x7f080012;
+        public static final int windSpeed=0x7f080013;
     }
     public static final class layout {
         public static final int activity_favorite=0x7f030000;
@@ -59,40 +61,42 @@ public final class R {
         public static final int activity_main=0x7f030002;
         public static final int activity_search_results=0x7f030003;
         public static final int menu=0x7f030004;
-        public static final int searchable=0x7f030005;
     }
     public static final class menu {
-        public static final int actionbar=0x7f060000;
+        public static final int actionbar=0x7f070000;
     }
     public static final class string {
-        public static final int actionSearch=0x7f04001a;
-        public static final int app_name=0x7f040000;
-        public static final int buttonConsult=0x7f040004;
-        public static final int buttonFav=0x7f040005;
-        public static final int buttonRefresh=0x7f040006;
-        public static final int cancel=0x7f040011;
-        public static final int fail_add_city=0x7f040013;
-        public static final int messageDialogFavorite=0x7f040008;
-        public static final int save=0x7f040010;
-        public static final int search_hint=0x7f04001b;
-        public static final int succes=0x7f040012;
-        public static final int textSelect=0x7f040003;
-        public static final int textTitle=0x7f040002;
-        public static final int titleDialogFavorite=0x7f040007;
-        public static final int title_activity_main=0x7f040001;
-        public static final int toastAddFavorite=0x7f04000b;
-        public static final int toastDelFavorite=0x7f04000a;
-        public static final int toastFavorite=0x7f040009;
-        public static final int txtAtmPressure=0x7f040015;
-        public static final int txtHum=0x7f040016;
-        public static final int txtTemp=0x7f040014;
-        public static final int txtWeatherIMG=0x7f040019;
-        public static final int txtWindDir=0x7f040018;
-        public static final int txtWindForce=0x7f040017;
-        public static final int txtaboutItem=0x7f04000d;
-        public static final int txtaddCityItem=0x7f04000c;
-        public static final int txtleaveItem=0x7f04000e;
-        public static final int version=0x7f04000f;
+        public static final int actionSearch=0x7f05001a;
+        public static final int app_name=0x7f050000;
+        public static final int buttonConsult=0x7f050004;
+        public static final int buttonFav=0x7f050005;
+        public static final int buttonRefresh=0x7f050006;
+        public static final int cancel=0x7f050011;
+        public static final int fail_add_city=0x7f050013;
+        public static final int ln_en=0x7f05001e;
+        public static final int ln_fr=0x7f05001d;
+        public static final int messageDialogFavorite=0x7f050008;
+        public static final int save=0x7f050010;
+        public static final int search_hint=0x7f05001b;
+        public static final int succes=0x7f050012;
+        public static final int textSelect=0x7f050003;
+        public static final int textTitle=0x7f050002;
+        public static final int titleDialogFavorite=0x7f050007;
+        public static final int title_activity_main=0x7f050001;
+        public static final int title_menu_language=0x7f05001c;
+        public static final int toastAddFavorite=0x7f05000b;
+        public static final int toastDelFavorite=0x7f05000a;
+        public static final int toastFavorite=0x7f050009;
+        public static final int txtAtmPressure=0x7f050015;
+        public static final int txtHum=0x7f050016;
+        public static final int txtTemp=0x7f050014;
+        public static final int txtWeatherIMG=0x7f050019;
+        public static final int txtWindDir=0x7f050018;
+        public static final int txtWindForce=0x7f050017;
+        public static final int txtaboutItem=0x7f05000d;
+        public static final int txtaddCityItem=0x7f05000c;
+        public static final int txtleaveItem=0x7f05000e;
+        public static final int version=0x7f05000f;
     }
     public static final class style {
         /** 
@@ -116,10 +120,13 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f050000;
+        public static final int AppBaseTheme=0x7f060000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f050001;
+        public static final int AppTheme=0x7f060001;
+    }
+    public static final class xml {
+        public static final int searchable=0x7f040000;
     }
 }

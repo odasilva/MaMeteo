@@ -2,19 +2,24 @@ package com.esgi.mameteo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import modele.Weather_Data;
 import BDD.WeatherBDD;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.SearchManager;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.DialogInterface.OnClickListener;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.widget.CursorAdapter;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,6 +44,17 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		 if(getIntent().hasExtra("locale")){
+				Resources res = MainActivity.this.getResources();
+				// Change locale settings in the app.
+				DisplayMetrics dm = res.getDisplayMetrics();
+				android.content.res.Configuration conf = res
+						.getConfiguration();
+				conf.locale = new Locale(getIntent().getStringExtra("locale"));
+				res.updateConfiguration(conf, dm);
+			}
+		 
 		setContentView(R.layout.activity_main);
 		
 		Button btn = (Button) findViewById(R.id.buttonFav);
@@ -172,6 +188,32 @@ public class MainActivity extends Activity {
 	           case R.id.leaveItem:
 	               finish();
 	               return true;
+	           case R.id.menu_language:
+	        	   String[] tabStringLanguage = {
+	   					getResources().getString(R.string.ln_en),
+	   					getResources().getString(R.string.ln_fr),
+	   			};
+
+	   			AlertDialog.Builder builder = new Builder(this).setTitle(
+	   					getResources().getString(R.string.title_menu_language))
+	   					.setItems(tabStringLanguage, new OnClickListener() {
+
+	   						public void onClick(DialogInterface dialog, int which) {
+
+	   							String ln = "";
+	   							if (which == 0)
+	   								ln = "en";
+	   							else if (which == 1)
+	   								ln = "fr";
+
+	   							finish();
+	   							startActivity(getIntent().putExtra("locale", ln));
+	   						}
+
+	   					});
+
+	   			builder.show();
+	   			return true;
 	         }
 	         return false;
 	     }

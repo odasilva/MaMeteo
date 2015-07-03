@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="textSelect">Choisissez votre ville : </string>
+    <string name="buttonConsult">Consulter</string>
+    <string name="buttonFav">Favoris</string>
+    <string name="buttonRefresh">Actualiser</string>
+    <string name="titleDialogFavorite">Supprimer Favoris</string>
+    <string name="messageDialogFavorite">Êtes-vous sûr(e) de vouloir supprimer cette ville de vos favoris ?</string>
+    <string name="toastFavorite">Favoris supprimé.</string>
+    <string name="toastDelFavorite">supprimé des favoris.</string>
+    <string name="toastAddFavorite">ajouté aux favoris.</string>   
+    <string name="txtaddCityItem">Ajouter une ville</string>   
+    <string name="txtaboutItem">A Propos</string>   
+    <string name="txtleaveItem">Quitter</string>   
+    <string name="version">Version</string>   
+    <string name="save">Enregistrer</string>   
+    <string name="cancel">Annuler</string> 
+    <string name="succes">ajouté avec succès.</string>   
+    <string name="fail_add_city">Erreur</string>
+    <string name="txtTemp">Température :</string>    
+    <string name="txtAtmPressure">Pression :</string>
+    <string name="txtHum">Humidité :</string>
+    <string name="txtWindForce">Vitesse du vent :</string>
+    <string name="txtWindDir">Direction du vent :</string>
+    <string name="txtWeatherIMG">l\'image de la météo</string>
+    <string name="actionSearch">rechercher</string>
+    <string name="search_hint">rechercher</string>
+    <string name="title_menu_language">Langue</string>
+    <string name="ln_fr">Francais</string>
+    <string name="ln_en">Anglais</string>
+    
+</resources>
