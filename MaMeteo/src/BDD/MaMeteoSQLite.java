@@ -11,10 +11,11 @@ public class MaMeteoSQLite extends SQLiteOpenHelper{
 	private static final String COL_ID = "ID";
 	private static final String COL_COUNTRIE = "Countrie";
 	private static final String COL_FAVORITE = "Favorite";
+	private static final String COL_DATA = "Data";
  
 	private static final String CREATE_BDD = "CREATE TABLE " + TABLE_WEATHER + " ("
 			+ COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_COUNTRIE + " TEXT NOT NULL, "
-			+ COL_FAVORITE + " INTEGER NOT NULL);";
+			+ COL_FAVORITE + " INTEGER NOT NULL, "+ COL_DATA + " TEXT);";
 	
 	private static final String INSERT_BDD = "INSERT INTO " + TABLE_WEATHER + " ("
 			+ COL_COUNTRIE + ", "+ COL_FAVORITE + " ) " +

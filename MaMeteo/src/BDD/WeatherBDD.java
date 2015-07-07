@@ -20,6 +20,8 @@ public class WeatherBDD {
 	private static final int NUM_COL_COUNTRIE = 1;
 	private static final String COL_FAVORITE = "Favorite";
 	private static final int NUM_COL_FAVORITE = 2;
+	private static final String COL_DATA = "Data";
+	private static final int NUM_COL_DATA = 3;
  
 	private SQLiteDatabase bdd;
  
@@ -47,6 +49,7 @@ public class WeatherBDD {
 
 		values.put(COL_COUNTRIE, weather.getCountrie());
 		values.put(COL_FAVORITE, weather.getFavorite());
+		values.put(COL_DATA, weather.getData());
 
 		return bdd.insert(TABLE_WEATHER, null, values);
 	}
@@ -57,16 +60,29 @@ public class WeatherBDD {
 		
 		values.put(COL_COUNTRIE, weather.getCountrie());
 		values.put(COL_FAVORITE, weather.getFavorite());
+		values.put(COL_DATA, weather.getData());
 		
 		return bdd.update(TABLE_WEATHER, values, COL_ID + " = " +id, null);
 	}
 	
-	public int setFavoriteWeatherWithCountries(String countries, int favorite){
+	public int updateWeatherWithCountries(String countries, String data){
+
+		ContentValues values = new ContentValues();
+		
+		values.put(COL_COUNTRIE, countries);
+		values.put(COL_DATA, data);
+				
+		return bdd.update(TABLE_WEATHER, values, COL_COUNTRIE + " = '" +countries+"'", null);
+	}
+	
+	public int setFavoriteWeatherWithCountries(String countries, int favorite, String data){
 
 		ContentValues values = new ContentValues();
 		
 		values.put(COL_COUNTRIE, countries);
 		values.put(COL_FAVORITE, favorite);
+		values.put(COL_DATA, data);
+		
 		
 		return bdd.update(TABLE_WEATHER, values, COL_COUNTRIE + " = '" +countries+"'", null);
 	}
@@ -96,9 +112,16 @@ public class WeatherBDD {
  
 	public Weather_Data getWeatherWithId(int id){
 
-		Cursor c = bdd.query(TABLE_WEATHER, new String[] {COL_ID, COL_COUNTRIE, COL_FAVORITE}, COL_ID + " LIKE \"" + id +"\"", null, null, null, null);
+		Cursor c = bdd.query(TABLE_WEATHER, new String[] {COL_ID, COL_COUNTRIE, COL_FAVORITE, COL_DATA}, COL_ID + " LIKE \"" + id +"\"", null, null, null, null);
 		return cursorToWeather(c);
 	}
+	
+	public Weather_Data getWeatherCountrie(String countrie){
+
+		Cursor c = bdd.query(TABLE_WEATHER, new String[] {COL_ID, COL_COUNTRIE, COL_FAVORITE, COL_DATA}, COL_COUNTRIE + " LIKE \"" + countrie +"\"", null, null, null, null);
+		return cursorToWeather(c);
+	}
+
 
 	private Weather_Data cursorToWeather(Cursor c){
 
@@ -112,6 +135,7 @@ public class WeatherBDD {
 		weather.setId(c.getInt(NUM_COL_ID));
 		weather.setCountrie(c.getString(NUM_COL_COUNTRIE));
 		weather.setFavorite(c.getInt(NUM_COL_FAVORITE));
+		weather.setData(c.getString(NUM_COL_DATA));
 
 		c.close();
 

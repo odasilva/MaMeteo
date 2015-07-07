@@ -32,5 +32,6 @@
     <string name="title_menu_language">Language</string>
     <string name="ln_fr">French</string>
     <string name="ln_en">English</string>
+    <string name="no_cache">Sorry there is no backup for this city. Please connect to Internet.</string>
     
 </resources>

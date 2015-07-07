@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Locale;
+import java.util.concurrent.ExecutionException;
 
 import modele.Weather;
 import modele.Weather_Data;
@@ -15,6 +16,7 @@ import BDD.WeatherBDD;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
@@ -23,6 +25,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -48,7 +52,8 @@ public class MaMeteoActivity extends Activity {
 	private ImageView imgView;
 	
 	private String city;
-
+	private String data;
+	
 	private WeatherBDD weatherBdd;
 	
 	private MenuInflater inflater;
@@ -83,9 +88,26 @@ public class MaMeteoActivity extends Activity {
 		imgView = (ImageView) findViewById(R.id.condIcon);
 
 		weatherBdd = new WeatherBDD(this);
+		weatherBdd.open();
 		
-		JSONWeatherTask task = new JSONWeatherTask();
-		task.execute(new String[]{city});
+		if(checkDeviceConnected()){
+			JSONWeatherTask task = new JSONWeatherTask();
+			try {
+				task.execute(new String[]{city}).get();
+				
+				weatherBdd.updateWeatherWithCountries(city, data);
+				
+				
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+		}else{
+			getWeatherWithData();
+		}
+				
+		
 	}
 
 	public void onClickFav(View v){
@@ -93,10 +115,10 @@ public class MaMeteoActivity extends Activity {
 		
 		weatherBdd.open();
 		if(weatherBdd.isFavoriteWithCountires(city)){
-			weatherBdd.setFavoriteWeatherWithCountries(city, 0);
+			weatherBdd.setFavoriteWeatherWithCountries(city, 0, "");
 			toast = city+" "+getResources().getString(R.string.toastDelFavorite);
 		}else{
-			weatherBdd.setFavoriteWeatherWithCountries(city, 1);
+			weatherBdd.setFavoriteWeatherWithCountries(city, 1, "");
 			toast = city+" "+getResources().getString(R.string.toastAddFavorite);
 		}
 		weatherBdd.close();
@@ -112,11 +134,12 @@ public class MaMeteoActivity extends Activity {
 	
 	private class JSONWeatherTask extends AsyncTask<String, Void, Weather> {
 		
+		
 		@Override
 		protected Weather doInBackground(String... params) {
 			Weather weather = new Weather();
-			String data = ( (new WeatherHttpClient()).getWeatherData(params[0]));
-
+			data = ( (new WeatherHttpClient()).getWeatherData(params[0]));
+			
 			try {
 				weather = JSONMeteoParser.getWeather(data);
 				
@@ -127,17 +150,14 @@ public class MaMeteoActivity extends Activity {
 			} catch (JSONException e) {				
 				e.printStackTrace();
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			return weather;
 		
 	}
-		
-		
 		
 		
 	@Override
@@ -151,8 +171,7 @@ public class MaMeteoActivity extends Activity {
 			
 			if(bmp != null)
 				imgView.setImageBitmap(bmp);
-			
-							
+						
 			cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
 			condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
 			temp.setText("" + Math.round((weather.temperature.getTemp() - 273.15)) + "c");
@@ -160,9 +179,52 @@ public class MaMeteoActivity extends Activity {
 			press.setText("" + weather.currentCondition.getPressure() + " hPa");
 			windSpeed.setText("" + weather.wind.getSpeed() + " mps");
 			windDeg.setText("" + weather.wind.getDeg());
-				
+			
 		}	
   }
+	
+	public void getWeatherWithData(){
+		Weather weather = new Weather();
+		Weather_Data weather_Data = weatherBdd.getWeatherCountrie(city);
+		
+		
+		if(weather_Data.getData() != null){
+			try {
+				weather = JSONMeteoParser.getWeather(weather_Data.getData());
+				/*
+				URL url = new URL(ICONS_LOCATION + weather.currentCondition.getIcon() + ".png");
+				bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+				*/
+				
+				cityText.setText(weather.location.getCity() + "," + weather.location.getCountry());
+				condDescr.setText(weather.currentCondition.getCondition() + "(" + weather.currentCondition.getDescr() + ")");
+				temp.setText("" + Math.round((weather.temperature.getTemp() - 273.15)) + "c");
+				hum.setText("" + weather.currentCondition.getHumidity() + "%");
+				press.setText("" + weather.currentCondition.getPressure() + " hPa");
+				windSpeed.setText("" + weather.wind.getSpeed() + " mps");
+				windDeg.setText("" + weather.wind.getDeg());
+				
+			} catch (JSONException e) {				
+				e.printStackTrace();
+			}/* catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}*/
+		}else{
+			Toast.makeText(MaMeteoActivity.this,getResources().getString(R.string.no_cache), Toast.LENGTH_LONG).show();
+			
+			Intent intent = new Intent(this, MainActivity.class);
+			if(getIntent().hasExtra("locale")){
+				String locale = getIntent().getStringExtra("locale");
+				intent.putExtra("locale", locale);
+				
+			};
+			startActivity(intent);
+	
+		}
+	}
+	
 	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		 
@@ -252,4 +314,13 @@ public class MaMeteoActivity extends Activity {
          return false;
      }
       
+      
+   // Method to check whether the device has or not a network connection
+  	// @return True if device is connected to network and false else
+  	private boolean checkDeviceConnected() {
+  		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+  		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+  		return (networkInfo != null && networkInfo.isConnected());
+  	}
 }

@@ -4,6 +4,7 @@ public class Weather_Data {
 	private int id;
 	private String countrie;
 	private int favorite;//0 false 1 true
+	private String data;
 	
 	public Weather_Data(){
 		
@@ -12,6 +13,7 @@ public class Weather_Data {
 	public Weather_Data(String countrie){
 		this.countrie = countrie;
 		this.favorite = 0;
+		this.data = "";
 	}
 
 	public int getId() {
@@ -38,9 +40,18 @@ public class Weather_Data {
 		this.favorite = favorite;
 	}
 	
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
 	@Override
 	public String toString() {
 		return "Weather_Data [id=" + id + ", countrie=" + countrie
-				+ ", favorite=" + favorite + "]";
+				+ ", favorite=" + favorite + ", data=" + data + "]";
 	}
+
 }

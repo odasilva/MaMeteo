@@ -76,6 +76,7 @@ public final class R {
         public static final int ln_en=0x7f05001e;
         public static final int ln_fr=0x7f05001d;
         public static final int messageDialogFavorite=0x7f050008;
+        public static final int no_cache=0x7f05001f;
         public static final int save=0x7f050010;
         public static final int search_hint=0x7f05001b;
         public static final int succes=0x7f050012;

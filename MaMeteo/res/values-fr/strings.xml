@@ -29,5 +29,6 @@
     <string name="title_menu_language">Langue</string>
     <string name="ln_fr">Francais</string>
     <string name="ln_en">Anglais</string>
+    <string name="no_cache">Désolé il n\'y a pas de sauvegarde pour cette ville. Veuillez vous connecter à internet.</string>
     
 </resources>

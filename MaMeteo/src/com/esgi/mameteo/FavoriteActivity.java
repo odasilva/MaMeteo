@@ -93,7 +93,7 @@ public class FavoriteActivity extends Activity{
 			        	
 			        	String itemValue = (String) listview.getItemAtPosition(position);
 			        	weatherBDD.open();
-			        	weatherBDD.setFavoriteWeatherWithCountries(itemValue, 0);
+			        	weatherBDD.setFavoriteWeatherWithCountries(itemValue, 0, "");
 			        	weatherBDD.close();
 			        	
 			        	Toast.makeText(getApplicationContext(), getResources().getString(R.string.toastFavorite), Toast.LENGTH_SHORT).show();
