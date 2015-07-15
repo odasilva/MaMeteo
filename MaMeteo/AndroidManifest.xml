@@ -8,22 +8,24 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="15" />
 
-	<uses-permission android:name="android.permission.INTERNET"/> 
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-          <meta-data
-                android:name="android.app.default_searchable"
-                android:value="com.esgi.mameteo.SearchResultsActivity" />
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value="com.esgi.mameteo.SearchResultsActivity" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -31,19 +33,25 @@
             android:name=".MaMeteoActivity"
             android:label="@string/app_name" >
         </activity>
-         <activity
+        <activity
             android:name=".FavoriteActivity"
             android:label="@string/buttonFav" >
         </activity>
-        
-           <activity android:name="com.esgi.mameteo.SearchResultsActivity"
-               android:launchMode="standard">
+        <activity
+            android:name=".SearchResultsActivity"
+            android:launchMode="standard" >
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-                   <meta-data
+
+            <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+        <activity
+            android:name=".MultiDayWeatherActivity"
+            android:label="@string/title_activity_multi_day_weather" >
+        </activity>
     </application>
+
 </manifest>

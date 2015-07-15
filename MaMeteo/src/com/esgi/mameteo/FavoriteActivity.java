@@ -8,7 +8,9 @@ import modele.Weather_Data;
 import BDD.WeatherBDD;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.SearchManager;
 import android.app.AlertDialog.Builder;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
@@ -27,6 +29,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 public class FavoriteActivity extends Activity{
@@ -121,7 +124,10 @@ public class FavoriteActivity extends Activity{
 		 
 	        inflater = getMenuInflater();
 	        inflater.inflate(R.layout.menu, menu);
-	 	 
+	        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+	        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+	        searchView.setSearchableInfo(searchManager
+	                .getSearchableInfo(getComponentName()));
 	        return true;
 	     }
 	 

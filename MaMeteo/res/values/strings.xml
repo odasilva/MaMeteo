@@ -12,16 +12,16 @@
     <string name="messageDialogFavorite">Are you sure you want to delete this favorite city ?</string>
     <string name="toastFavorite">Favorites deleted.</string>
     <string name="toastDelFavorite">removed from favorites.</string>
-    <string name="toastAddFavorite">added to favorites.</string>   
-    <string name="txtaddCityItem">Add city</string>   
-    <string name="txtaboutItem">About</string>   
-    <string name="txtleaveItem">Exit</string>   
-    <string name="version">Version</string>   
-    <string name="save">Save</string>   
-    <string name="cancel">Cancel</string> 
-    <string name="succes">successfully added.</string>   
+    <string name="toastAddFavorite">added to favorites.</string>
+    <string name="txtaddCityItem">Add city</string>
+    <string name="txtaboutItem">About</string>
+    <string name="txtleaveItem">Exit</string>
+    <string name="version">Version</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="succes">successfully added.</string>
     <string name="fail_add_city">Error</string>
-    <string name="txtTemp">Temperature :</string>    
+    <string name="txtTemp">Temperature :</string>
     <string name="txtAtmPressure">Atm. Pressure :</string>
     <string name="txtHum">Humidity :</string>
     <string name="txtWindForce">Wind Speed :</string>
@@ -33,5 +33,8 @@
     <string name="ln_fr">French</string>
     <string name="ln_en">English</string>
     <string name="no_cache">Sorry there is no backup for this city. Please connect to Internet.</string>
-    
+    <string name="title_activity_multi_day_weather">MultiDayWeatherActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

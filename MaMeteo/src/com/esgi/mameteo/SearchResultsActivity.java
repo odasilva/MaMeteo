@@ -54,7 +54,7 @@ public class SearchResultsActivity extends Activity{
         ActionBar actionBar = getActionBar();
  
         // Enabling Back navigation on Action Bar icon
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        //actionBar.setDisplayHomeAsUpEnabled(true);
 
         
         handleIntent(getIntent());
@@ -73,7 +73,6 @@ public class SearchResultsActivity extends Activity{
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
         	try {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            Log.v("MAMETEO",query);
             parseResponse( new CitySearchTask().execute(query).get());
             adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,foundedCities);
             resultsList = (ListView) findViewById(R.id.resultsList);
@@ -103,11 +102,15 @@ public class SearchResultsActivity extends Activity{
         	DocumentBuilder builder = factory.newDocumentBuilder();
         	InputSource is = new InputSource(new StringReader(result));
         	Document doc = builder.parse(is);
-        	//get all retrievde cities
+        	//get all retrieved cities and their country
         	NodeList citiesXml = doc.getElementsByTagName("city");
-        	//insert citiesName in an ArrayList
+        	NodeList citiesCountryXml = doc.getElementsByTagName("country");
+        	//insert cities names and countries in an ArrayList
         	for(int i = 0; i < citiesXml.getLength(); i ++)
-        		foundedCities.add(citiesXml.item(i).getAttributes().getNamedItem("name").getNodeValue());
+        	{
+        		foundedCities.add(citiesXml.item(i).getAttributes().getNamedItem("name").getNodeValue() + ", " +
+        			citiesCountryXml.item(i).getTextContent());
+        	}
         	}catch(IOException e){}
         	catch (ParserConfigurationException e) {}
     		catch (SAXException e) {}
