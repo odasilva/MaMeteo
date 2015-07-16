@@ -82,8 +82,7 @@ public class SearchResultsActivity extends Activity{
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					String selected = ((String)adapter.getItem(position)).split(",")[0];
-					Log.v("DEBUG", selected);
+					String selected = (String)adapter.getItem(position);
 					Intent intent = new Intent(SearchResultsActivity.this, MaMeteoActivity.class);
 					intent.putExtra("Countrie",selected);	
 					startActivity(intent);
@@ -109,8 +108,9 @@ public class SearchResultsActivity extends Activity{
         	//insert cities names and countries in an ArrayList
         	for(int i = 0; i < citiesXml.getLength(); i ++)
         	{
-        		foundedCities.add(citiesXml.item(i).getAttributes().getNamedItem("name").getNodeValue() + ", " +
-        			citiesCountryXml.item(i).getTextContent());
+        		String city = citiesXml.item(i).getAttributes().getNamedItem("name").getNodeValue() + "," +
+            			citiesCountryXml.item(i).getTextContent();
+        		foundedCities.add(city);
         	}
         	}catch(IOException e){}
         	catch (ParserConfigurationException e) {}
